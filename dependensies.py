@@ -3,16 +3,15 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
 import jwt
-import httpx
-from starlette.status import HTTP_401_UNAUTHORIZED
 
-from models import SessionLocal
-from schemas import Params, UserCurrent
-from utils import create_user_token, decode_access_token
-from crud import get_user_by_email
+from app.models import SessionLocal
+from app.schemas import ParamsLimitOffset, UserCurrent, ParamsIdUser
+from app.utils import decode_access_token
+from app.crud import get_user_by_email
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/authenticate")
+
 
 def get_db():
     try:
@@ -22,8 +21,12 @@ def get_db():
         db.close()
 
 
-async def get_params(request: Request):
-    return Params(**request.query_params)
+async def get_params_limit_offset(request: Request):
+    return ParamsLimitOffset(**request.query_params)
+
+
+async def get_params_id(request: Request):
+    return ParamsIdUser(**request.query_params)
 
 
 async def get_current_user(user: UserCurrent, token: str = Depends(oauth2_scheme),

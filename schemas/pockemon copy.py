@@ -38,8 +38,8 @@ class ListSchemaPockemonResponse(BaseModel):
         # https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20
         MY_URL_GET_POCKEMONS = 'http://127.0.0.1:8000/pockemons/'
         if v:
-            _, params = v.split('?')
-            return "?".join((MY_URL_GET_POCKEMONS, params))
+            _, ParamsLimitOffset = v.split('?')
+            return "?".join((MY_URL_GET_POCKEMONS, ParamsLimitOffset))
         
         
         

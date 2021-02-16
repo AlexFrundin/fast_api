@@ -2,12 +2,17 @@ from sqlalchemy.orm import Session
 from typing import Union, List
 
 from app.utils import check_password, create_hash
-from app.models import User, Pockemon
-import schemas
+from app.models import User, Pockemon 
+from app import schemas
+
+
+def verify_password(db: Session, user: schemas.UserCreate) -> bool:
+    db_user = get_user_by_email(db, email=user.email)
+    return check_password(db_user.password_hash, user.password)
 
 
 def get_user_by_id(db: Session, id:int) -> Union[User, None]:
-    return db.query(User).get(id == 1)
+    return db.query(User).get(id)
 
 
 def get_count_pockemons(db: Session):
@@ -24,11 +29,6 @@ def create_pockemons(db: Session, pockemons: List[dict]):
 def get_user_by_email(db: Session, email: str) -> Union[User, None]: 
     return db.query(User).filter(User.email == email).first()
      
-
-def check_username_password(db: Session, user: schemas.UserCreate) -> bool:
-    db_user = get_user_by_email(db, email=user.email)
-    return check_password(db_user.password_hash, user.password)
-
 
 def create_db_user(db: Session, user: schemas.UserCreate) -> User:
     password_hash = create_hash(user.password)
