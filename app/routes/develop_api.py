@@ -10,4 +10,5 @@ dev = APIRouter(prefix="/develop",
 @dev.get('/drop')
 def drop_create_db():
     Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
     return {"message": "Succesuful"}

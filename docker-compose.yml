@@ -4,13 +4,14 @@ services:
     web:
         restart: always
         build: .
+        # command: bash -c "alembic upgrade head && python main.py"
         command: python main.py
         ports:
             - "8000:8000"
         depends_on:
             - db
         volumes:
-            - .:/usr/src/app
+            - .:/app
         env_file: .env
 
     db:
