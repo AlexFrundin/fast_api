@@ -7,7 +7,7 @@ from app.models import Base, engine
 from app.dependensies import get_db
 from utils import get_pocki_api
 
-from app.routes import auth, user, pockemon, dev
+from app.routes import auth, user, pockemon, dev, video
 
 Base.metadata.create_all(bind=engine)
 
@@ -17,6 +17,7 @@ app.include_router(auth)
 app.include_router(user)
 app.include_router(pockemon)
 app.include_router(dev)
+app.include_router(video)
 
 @app.on_event("startup")
 async def update_or_create_data():
