@@ -14,3 +14,6 @@ https://www.lfd.uci.edu/~gohlke/pythonlibs/#opencv
 Если есть веб-камера
 можете посмотреть на stream video
 http://127.0.0.1:8000/video
+
+Добавил ветку Docker
+Код предназначен для использование с docker

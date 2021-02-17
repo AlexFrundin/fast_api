@@ -5,7 +5,7 @@ import uvicorn
 from app.crud import get_count_pockemons, create_pockemons
 from app.models import Base, engine
 from app.dependensies import get_db
-from utils import get_pocki_api
+from app.utils import get_pocki_api
 
 from app.routes import auth, user, pockemon, dev, video
 
