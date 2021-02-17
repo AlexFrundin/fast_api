@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+    web:
+        restart: always
+        build: .
+        command: python main.py
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+        volumes:
+            - .:/usr/src/app
+        env_file: .env
+
+    db:
+        image: postgres:13.1
+        volumes:
+            - db_data:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=${USER_DATABASE}
+            - POSTGRES_PASSWORD=${PASSWORD_DATABASE}
+            - POSTGRES_DB=${NAME_DATABASE}        
+
+volumes:
+    db_data:
+
+    
+
