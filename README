@@ -5,4 +5,12 @@
 4. Websockets для опевещения о входе, регистрации и приглашение сразиться
 
 Документация APi
-http://localhost/docs#/
+http://127.0.0.1:8000/docs#/
+
+Если вы запускаете код в среде win10, необходимо установить в ручную пакеты
+numPy OpenCV
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#opencv
+Если есть веб-камера
+можете посмотреть на stream video
+http://127.0.0.1:8000/video
