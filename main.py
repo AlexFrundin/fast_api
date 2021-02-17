@@ -1,3 +1,4 @@
+from app.settings import DEBUG
 from fastapi import FastAPI
 
 import uvicorn
@@ -19,6 +20,7 @@ app.include_router(pockemon)
 app.include_router(dev)
 app.include_router(video)
 
+
 @app.on_event("startup")
 async def update_or_create_data():
     answer = await get_pocki_api()
@@ -33,6 +35,9 @@ async def root():
 
 
 if __name__ == "__main__":
-    uvicorn.run('main:app', host="127.0.0.1", port=8000,
-                log_level="info", reload=True,
-                debug=True, workers=2)
+    if DEBUG:
+        uvicorn.run('main:app', host="localhost", port=8000,
+                    log_level="info", reload=True,
+                    debug=True, workers=2)
+    else:
+        uvicorn.run('main:app', host="0.0.0.0", port=8000, workers=4)

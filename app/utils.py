@@ -3,11 +3,7 @@ from datetime import timedelta, datetime
 import bcrypt
 import httpx
 
-
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
-ACCESS_TOKEN_EXPIRE_MINUTES_TEST = 300000
+from app.settings import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
 
 all_pockemon = "https://pokeapi.co/api/v2/pokemon/?offset=%(offset)s&limit=%(limit)s"
 
@@ -32,8 +28,8 @@ def decode_access_token(*, token: str):
     return jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
 
-async def create_user_token(db_user, expires_dalta: int = ACCESS_TOKEN_EXPIRE_MINUTES_TEST):
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES_TEST)
+async def create_user_token(db_user, expires_dalta: int = ACCESS_TOKEN_EXPIRE_MINUTES):
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = await create_access_token(
         data={"sub": db_user.email}, expires_delta=access_token_expires)
     return {"access_token": access_token, **db_user.__dict__}
