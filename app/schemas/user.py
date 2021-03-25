@@ -18,22 +18,18 @@ class UserCreate(User):
 
 class UserCurrent(User):
     id: int
+    
 
-    class Config:
-        orm_mode = True
-        
-        
 class UserBase(UserCurrent):
     pockemons: Optional[List[SchemaPockemonBase]]
-
-    class Config:
-        orm_mode = True
-
+    
     @validator('pockemons', pre=True)
     def evalute_pockemons(cls, v):
         return list(v)
 
-
 class UserToken(Token, UserCurrent):
     pass
 
+
+class CreateUserPockemon(UserCurrent):
+    pockemons: List[int]

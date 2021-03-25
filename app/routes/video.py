@@ -3,7 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import StreamingResponse, FileResponse
 from app.settings import TEMPLATES_URL
 
-from app.utils_video import gen_frames
+from app.utils.utils_video import gen_frames
 
 
 video = APIRouter(prefix='/video',

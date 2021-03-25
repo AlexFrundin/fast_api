@@ -28,7 +28,7 @@ def decode_access_token(*, token: str):
     return jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
 
-async def create_user_token(db_user, expires_dalta: int = ACCESS_TOKEN_EXPIRE_MINUTES):
+async def create_user_token(db_user, expires_delta: int = ACCESS_TOKEN_EXPIRE_MINUTES):
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = await create_access_token(
         data={"sub": db_user.email}, expires_delta=access_token_expires)

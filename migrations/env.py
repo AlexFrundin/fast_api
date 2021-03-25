@@ -24,7 +24,7 @@ config.set_section_option(section, "DB_USER", DB_USER)
 config.set_section_option(section, "DB_PASS", DB_PASS)
 config.set_section_option(section, "DB_NAME", DB_NAME)
 config.set_section_option(section, "DB_HOST", DB_HOST)
-config.set_section_option(section, "DB_PORT", DB_PORT)
+config.set_section_option(section, "DB_PORT", str(DB_PORT))
 
 fileConfig(config.config_file_name)
 

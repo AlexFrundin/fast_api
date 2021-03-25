@@ -1,5 +1,3 @@
-from .authenticate import auth
-from .develop_api import dev
-from .pockemons import pockemon
-from .users import user
 from .video import video
+from .users_async import user_async
+from .authenticate_async import auth_async

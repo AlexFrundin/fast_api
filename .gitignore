@@ -1,4 +1,6 @@
-/__pycache__/
 .vscode
 *.code-workspace
 *.py[doc]
+*.back
+/cli/
+__pycache__
